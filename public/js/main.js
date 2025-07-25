@@ -11,6 +11,7 @@ import {
   processMessage,
   updateLastMessage,
 } from "./utilities.js";
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("/service-worker.js").then(
