@@ -4,7 +4,7 @@ self.addEventListener("install", (event) => {
     caches.open("static-v1").then((cache) => {
       return cache.addAll([
         "/",
-        "/login",
+        "/chats",
         "/css/index.css", // adjust as needed
         "/js/main.js", // adjust as needed
         "/manifest.json",
