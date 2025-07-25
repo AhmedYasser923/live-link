@@ -1,7 +1,7 @@
 //=====to get the user document and return it=====
 export const getUserDoc = async (userId) => {
   try {
-    const res = await axios.get(`http://127.0.0.1:4000/api/users/${userId}`);
+    const res = await axios.get(`/api/users/${userId}`);
     if (res.data.status === "success") {
       const userDoc = res.data.data.user;
       return userDoc;
