@@ -32,7 +32,7 @@ form.addEventListener("submit", async (e) => {
 
     if (res.data.status === "success") {
       window.setTimeout(() => {
-        location.assign("/"); // redirect after login
+        location.assign("/chats"); // redirect after login
       }, 1500);
       showAlert("success", "Logged in successfully!");
       console.log(res);
