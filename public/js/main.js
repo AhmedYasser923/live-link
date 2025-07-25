@@ -319,13 +319,14 @@ socket.on("msg-receive", async (data) => {
       updateOnlineStatus();
       sidebarChatsSection.prepend(chatWrapper);
     }
+    updateLastMessage({
+      when: "onReceive",
+      container: sidebarChatsSection,
+      message: data,
+      otherParticipantID: data.sender,
+    });
+    sidebarChatsSection.prepend(chat);
   }
-  updateLastMessage({
-    when: "onReceive",
-    container: sidebarChatsSection,
-    message: data,
-    otherParticipantID: data.sender,
-  });
 });
 
 //=====searching for users=====
