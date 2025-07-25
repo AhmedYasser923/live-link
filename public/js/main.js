@@ -229,7 +229,6 @@ function attachFormListener(form) {
       sidebarChatsSection.prepend(chatWrapper);
       updateOnlineStatus();
     } else {
-      sidebarChatsSection.prepend(chatWrapper);
       updateLastMessage({
         when: "onSend",
         container: sidebarChatsSection,
