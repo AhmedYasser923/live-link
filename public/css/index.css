@@ -34,8 +34,7 @@ body {
   display: grid;
   grid-auto-flow: column; /*creates 3 equal columns*/
   grid-template-columns: 50px 400px 4fr;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
+  height: 100vh;
 }
 
 /*=====Navigation bar=====*/
