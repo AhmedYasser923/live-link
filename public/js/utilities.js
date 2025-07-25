@@ -190,7 +190,7 @@ export const displayConversationSection = async (options) => {
 export const loadConversation = async ({ otherParticipantID }) => {
   try {
     const res = await axios.get(
-      `http://127.0.0.1:4000/api/conversations/${otherParticipantID}/messages`
+      `/api/conversations/${otherParticipantID}/messages`
     );
 
     if (res.data.status === "success") {
@@ -214,9 +214,7 @@ export const loadConversationMessages = async ({
   messageBox.innerHTML = "";
   showLoader(messageBox, "convo-loader");
   try {
-    const res = await axios.get(
-      `http://127.0.0.1:4000/api/messages/conversation/${conversationID}`
-    );
+    const res = await axios.get(`/api/messages/conversation/${conversationID}`);
 
     if (res.data.status === "success") {
       if (res.data.data !== null) {
@@ -355,7 +353,7 @@ export function appendMessage({ messageBox, message, loggedInUserId }) {
 export const sendMessage = async ({ otherParticipantID, content }) => {
   try {
     const res = await axios.post(
-      `http://127.0.0.1:4000/api/conversations/${otherParticipantID}/messages`,
+      `/api/conversations/${otherParticipantID}/messages`,
       {
         content,
       }

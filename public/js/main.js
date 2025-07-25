@@ -31,7 +31,7 @@ let currentChat = {
 //=====Get Data from Elements=====
 const loggedInUserId = navbar.dataset.loggedinuser;
 //---------------------------------------------------
-const socket = io("http://127.0.0.1:4000");
+const socket = io();
 socket.emit("add-user", loggedInUserId);
 
 let onlineUserIds = [];
@@ -74,7 +74,7 @@ function updateOnlineStatus() {
 //=====Load All Conversations for the current user=====
 const LoadAllConversations = async (loggedInUserId) => {
   try {
-    const res = await axios.get(`http://127.0.0.1:4000/api/conversations`);
+    const res = await axios.get(`/api/conversations`);
     if (res.data.status === "success") {
       if (res.data.data !== null) {
         const conversations = res.data.data.conversations;
@@ -261,12 +261,9 @@ socket.on("msg-receive", async (data) => {
         loggedInUserId: data.receiver,
       });
       try {
-        const res = await axios.patch(
-          `http://127.0.0.1:4000/api/messages/${data.messageId}`,
-          {
-            seen: true,
-          }
-        );
+        const res = await axios.patch(`/api/messages/${data.messageId}`, {
+          seen: true,
+        });
         const updatedMessage = res.data.data.updatedMessage;
         socket.emit("msg-seen", {
           messageId: data.messageId,
@@ -331,9 +328,7 @@ searchInput.addEventListener("input", async () => {
 
   try {
     const res = await axios.get(
-      `http://127.0.0.1:4000/api/users/search-users?query=${encodeURIComponent(
-        query
-      )}`
+      `/api/users/search-users?query=${encodeURIComponent(query)}`
     );
 
     const users = res.data.data.users;

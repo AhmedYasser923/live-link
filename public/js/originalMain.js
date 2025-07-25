@@ -12,7 +12,7 @@ const nav = document.querySelector(".nav");
 const currentUser = nav.dataset.currentuser;
 const conversationWrapper = document.querySelector(".conversation-wrapper");
 
-const socket = io("http://127.0.0.1:4000");
+const socket = io();
 socket.emit("add-user", currentUser);
 
 let onlineUserIds = [];
