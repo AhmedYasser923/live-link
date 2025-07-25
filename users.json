@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Sophie Louise Hart",
+    "email": "sophie@example.com",
+    "password": "test1234",
+    "passwordConfirm": "test1234",
+    "photo": "user-1.jpg"
+  },
+  {
+    "name": "Ayla Cornell",
+    "email": "ayls@example.com",
+    "password": "test1234",
+    "passwordConfirm": "test1234",
+    "photo": "user-2.jpg"
+  },
+  {
+    "name": "Jennifer Hardy",
+    "email": "jennifer@example.com",
+    "password": "test1234",
+    "passwordConfirm": "test1234",
+    "photo": "user-3.jpg"
+  }
+]

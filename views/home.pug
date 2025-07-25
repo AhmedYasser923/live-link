@@ -1,0 +1,33 @@
+extends base
+
+block content
+  .container
+    .nav(data-loggedInuser = user._id)
+      img.nav__img(src="/img/icon/chat.png")
+      if user
+        .nav__section 
+          a(href="#")
+              img(src=`/img/${user.photo}`)
+      else
+        .nav__section
+          a(href="#") sign up
+          a(href="#") login
+
+    .sidebar
+      .sidebar__header
+        i(class="fa-solid fa-check-double")  
+        h3 chat app
+      .sidebar__search
+        input#userSearch(type='text', placeholder ='Search or start a new chat')
+        #searchResults.hidden
+
+      .sidebar__chats  !{''} 
+    .conversation-wrapper.hidden
+                      
+    
+block scripts
+  script(src="/socket.io/socket.io.js")
+  script( type="module" src="/js/main.js")
+  script( type="module" src="/js/utilities.js")
+
+  //- script(src='/js/oldChat.js')
