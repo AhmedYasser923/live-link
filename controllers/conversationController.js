@@ -113,7 +113,7 @@ exports.getConversations = catchAsync(async (req, res, next) => {
     participants: { $in: [req.user._id] },
   })
     .populate({ path: "lastMessage", select: "content seen" })
-    .sort({ updatedAt: -1 });
+    .sort({ updatedAt: 1 });
 
   if (conversations.length === 0) {
     return res.status(200).json({
