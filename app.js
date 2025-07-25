@@ -4,16 +4,20 @@ const globalErrorHandler = require("./controllers/errorController");
 const AppError = require("./utils/appError");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
+const compression = require("compression");
+const path = require("path");
 
 // if (process.env.NODE_ENV === "development") {
 //   app.use(morgan("dev"));
 // }
 
 app.set("view engine", "pug");
-app.use(express.static(`${__dirname}/public`));
+
+app.use(express.static(path.join(__dirname, "public")));
 // parser middlewares
 app.use(express.json());
 app.use(cookieParser());
+app.use(compression());
 
 //routes
 const authRouter = require("./routes/authRoutes");
