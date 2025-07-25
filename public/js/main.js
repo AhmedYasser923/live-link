@@ -31,7 +31,7 @@ let currentChat = {
 //=====Get Data from Elements=====
 const loggedInUserId = navbar.dataset.loggedinuser;
 //---------------------------------------------------
-const socket = io();
+const socket = io("https://live-link-production.up.railway.app/");
 socket.emit("add-user", loggedInUserId);
 
 let onlineUserIds = [];

@@ -25,7 +25,7 @@ form.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   try {
-    const res = await axios.post("http://127.0.0.1:4000/api/auth/login", {
+    const res = await axios.post("/api/auth/login", {
       email,
       password,
     });
