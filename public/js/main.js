@@ -385,11 +385,18 @@ if (searchResults) {
         updateOnlineStatus();
       }
       //------------------------------------------------
-      const { messageBox, chatForm } = await displayConversationSection({
-        otherParticipantID: clickedUserItem.dataset.id,
-        container: conversationWrapper,
-      });
+      const { messageBox, chatForm, backIcon } =
+        await displayConversationSection({
+          otherParticipantID: clickedUserItem.dataset.id,
+          container: conversationWrapper,
+        });
       updateOnlineStatus();
+
+      backIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        conversationWrapper.innerHTML = "";
+        conversationWrapper.classList.toggle("hidden");
+      });
 
       //------------------------------------------------
       chatForm.addEventListener("submit", async (e) => {
