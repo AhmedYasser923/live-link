@@ -229,6 +229,7 @@ function attachFormListener(form) {
     const chat = sidebarChatsSection.querySelector(
       `.chat-wrapper[data-id="${message.receiver}"]`
     );
+    sidebarChatsSection.prepend(chat);
     if (!chat) {
       const { chatWrapper } = await displayUsersOnSidebar({
         container: sidebarChatsSection,
@@ -248,6 +249,7 @@ function attachFormListener(form) {
         message: message,
         otherParticipantID: message.receiver,
       });
+      sidebarChatsSection.prepend(chat);
     }
   });
 }
