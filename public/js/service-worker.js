@@ -5,11 +5,11 @@ self.addEventListener("install", (event) => {
       return cache.addAll([
         "/",
         "/login",
-        "/css/style.css", // adjust as needed
+        "/css/index.css", // adjust as needed
         "/js/main.js", // adjust as needed
         "/manifest.json",
-        "/icons/icon-192.png",
-        "/icons/icon-512.png",
+        "/img/icon/chat.png",
+        "/img/icon/chat.png",
       ]);
     })
   );
