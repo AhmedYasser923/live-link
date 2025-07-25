@@ -229,6 +229,7 @@ function attachFormListener(form) {
       sidebarChatsSection.prepend(chatWrapper);
       updateOnlineStatus();
     } else {
+      sidebarChatsSection.prepend(chatWrapper);
       updateLastMessage({
         when: "onSend",
         container: sidebarChatsSection,
@@ -452,4 +453,8 @@ socket.on("msg-seen", ({ messageId }) => {
     tickIcon.classList.remove("delivered");
     tickIcon.classList.add("seen");
   }
+});
+
+window.addEventListener("resize", () => {
+  document.body.style.height = `${window.innerHeight}px`;
 });
