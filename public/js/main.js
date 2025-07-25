@@ -11,6 +11,18 @@ import {
   processMessage,
   updateLastMessage,
 } from "./utilities.js";
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("/service-worker.js").then(
+      function (registration) {
+        console.log("ServiceWorker registered:", registration);
+      },
+      function (err) {
+        console.log("ServiceWorker registration failed:", err);
+      }
+    );
+  });
+}
 
 const notificationSound = new Audio("../sounds/notification.mp3");
 notificationSound.volume = 0.5; // optional: set volume
