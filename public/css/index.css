@@ -399,14 +399,19 @@ body {
   .nav {
     height: auto;
     position: fixed;
-    bottom: 0;
+    top: 0;
     right: 0;
     left: 0;
     flex-direction: row;
     flex-grow: 1;
-    justify-content: space-around;
+    justify-content: flex-end;
     padding: 10px;
     align-items: center;
+    z-index: 1;
+    background-color: transparent;
+  }
+  .nav__img {
+    display: none;
   }
   .conversation-wrapper {
     position: absolute;
