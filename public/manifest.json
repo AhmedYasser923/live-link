@@ -1,7 +1,7 @@
 {
   "name": "My Chat App",
   "short_name": "ChatApp",
-  "start_url": "/",
+  "start_url": "/home",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#121212",
