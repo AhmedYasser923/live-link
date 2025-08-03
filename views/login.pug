@@ -16,24 +16,108 @@ html(lang="en")
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
     
   body
-    .d-flex.align-items-center.justify-content-center.vh-100.bg-black
-      .card.shadow(style="width: 24rem")
-        .card-body
-          h3.card-title.text-center.mb-4 Login
+    //- .d-flex.align-items-center.justify-content-center.vh-100.bg-black
+    //-   .card.shadow(style="width: 24rem")
+    //-     .card-body
+    //-       h3.card-title.text-center.mb-4 Login
 
-          form#loginForm
-            .mb-3
-              label.form-label(for="email") Email address
-              input.form-control(type="email", id="email", required)
+    //-       form#loginForm
+    //-         .mb-3
+    //-           label.form-label(for="email") Email address
+    //-           input.form-control(type="email", id="email", required)
 
-            .mb-3
-              label.form-label(for="password") Password
-              input.form-control(type="password", id="password", required)
+    //-         .mb-3
+    //-           label.form-label(for="password") Password
+    //-           input.form-control(type="password", id="password", required)
 
-            p#error.text-danger
+    //-         p#error.text-danger
 
-            button.btn.btn-dark.w-100(type="submit") Login
+    //-         button.btn.btn-dark.w-100(type="submit") Login
+
+
+    .to-indigo-600.flex.bg-white.items-center.justify-center.min-h-screen.p-4
+      #auth-container.bg-white.p-8.rounded-2xl
+        #signin-form-container
+          .text-center.mb-8
+            .w-16.h-16.rounded-xl.mx-auto.mb-4.flex.items-center.justify-center
+              img(src="/img/icon/chat.png")
+            h2.text-2xl.font-bold.text-gray-800.mb-2 Sign In to Your Account
+            p.text-gray-600.text-sm Access your account to continue
+          form#loginForm.space-y-5
+            div
+              label.block.text-sm.font-semibold.text-gray-700.mb-2(for='login-email' ) Email
+              input#email.w-full.px-4.py-3.border.border-gray-300.rounded-lg.outline-none.transition-colors(type='email' class='focus:ring-2 focus:ring-blue-500 focus:border-blue-500' placeholder='your@email.com' required='' )
+            div
+              label.block.text-sm.font-semibold.text-gray-700.mb-2(for='login-password') Password
+              input#password.w-full.px-4.py-3.border.border-gray-300.rounded-lg.outline-none.transition-colors(type='password' class='focus:ring-2 focus:ring-blue-500 focus:border-blue-500' placeholder='••••••••' required='')
+            .flex.items-center.justify-between
+              a#forgot-password-link.text-sm.text-blue-600.font-medium(href='#' data-container='forgot-password-form-container' class='hover:text-blue-800')
+                | Forgot password?
+            button.w-full.bg-gradient-to-r.from-blue-500.to-purple-600.text-white.py-3.px-4.rounded-lg.font-semibold(type='submit' class='hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2')
+              | Sign In
+        
+          p.text-center.text-gray-600.text-sm.mt-8
+            | Don&apos;t have an account?
+            a#signup-link-login.text-blue-600.font-semibold(href='#' data-container='signup-form-container' class='hover:text-blue-800')
+              | Sign Up
+
+
+        #signup-form-container.hidden
+          .text-center.mb-6
+            .rounded-lg.mx-auto.mb-4.flex.items-center.justify-center
+              img(src="/img/icon/chat.png")
+            .text-center.mb-6
+              h2.text-2xl.font-bold.text-gray-800.mb-2 Create Account
+              p.text-gray-600.text-sm Fill in your details to register
+            form#signup-form.space-y-4
+              .grid.grid-cols-2.gap-4
+                div
+                  label.block.text-sm.font-semibold.text-gray-700.mb-1(for='signup-first-name') First Name
+                  input#signup-first-name.w-full.px-3.border.border-gray-300.rounded-lg.outline-none.text-sm(type='text' class='py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500' placeholder='First Name' required='')
+                div
+                  label.block.text-sm.font-semibold.text-gray-700.mb-1(for='signup-last-name') Last Name
+                  input#signup-last-name.w-full.px-3.border.border-gray-300.rounded-lg.outline-none.text-sm(type='text' class='py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500' placeholder='Last Name' required='')
+              div
+                label.block.text-sm.font-semibold.text-gray-700.mb-1(for='signup-email') Email
+                input#signup-email.w-full.px-3.border.border-gray-300.rounded-lg.outline-none.text-sm(type='email' class='py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500' placeholder='your@email.com' required='')
+             
+              .grid.grid-cols-2.gap-4
+                div
+                  label.block.text-sm.font-semibold.text-gray-700.mb-1(for='signup-password') Password
+                  input#signup-password.w-full.px-3.border.border-gray-300.rounded-lg.outline-none.text-sm(type='password' class='py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500' placeholder='••••••••' minlength='6' required='')
+                div
+                  label.block.text-sm.font-semibold.text-gray-700.mb-1(for='signup-confirm-password') Confirm Password
+                  input#signup-confirm-password.w-full.px-3.border.border-gray-300.rounded-lg.outline-none.text-sm(type='password' class='py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500' placeholder='••••••••' required='')
+              button.w-full.bg-gradient-to-r.from-blue-500.to-purple-600.text-white.py-3.px-4.rounded-lg.font-semibold.mt-6(type='submit' class='hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2')
+                | Create Account
+        
+            p.text-center.text-gray-600.text-sm.mt-6
+              | Already have an account?
+              a#login-link-signup.text-blue-600.font-semibold(href='#' data-container='signin-form-container' class='hover:text-blue-800')
+                | Log In
+        #forgot-password-form-container.hidden
+          .text-center.mb-6
+            .w-16.h-16.bg-gradient-to-r.from-blue-500.to-purple-600.rounded-lg.mx-auto.mb-4.flex.items-center.justify-center
+              svg.w-8.h-8.text-white(fill='currentColor' viewbox='0 0 20 20')
+                path(d='M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z')
+                path(d='M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z')
+            h2.text-2xl.font-bold.text-gray-800.mb-2 Recover Password
+            p.text-gray-600.text-sm
+              | Enter your email to receive the recovery link
+          form#forgot-password-form.space-y-5
+            div
+              label.block.text-sm.font-semibold.text-gray-700.mb-2(for='forgot-email') Email
+              input#forgot-email.w-full.px-4.py-3.border.border-gray-300.rounded-lg.outline-none(type='email' class='focus:ring-2 focus:ring-blue-500 focus:border-blue-500' placeholder='your@email.com' required='')
+            button.w-full.bg-gradient-to-r.from-blue-500.to-purple-600.text-white.py-3.px-4.rounded-lg.font-semibold(type='submit' class='hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2')
+              | Send Link
+          .text-center.mt-6
+            a#back-to-login-link-forgot.inline-flex.items-center.text-blue-600.font-medium.text-sm(href='#' data-container='signin-form-container' class='hover:text-blue-800')
+              svg.w-4.h-4.mr-2(fill='currentColor' viewbox='0 0 20 20')
+                path(fill-rule='evenodd' d='M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z' clip-rule='evenodd')
+              |           Back to login
+
 
 block scripts
   script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+  script(src='https://cdn.tailwindcss.com')
   script(src="/js/index.js")
