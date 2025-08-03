@@ -437,6 +437,7 @@ body {
   }
   .layout-wrapper {
     flex-grow: 1;
+    width: 215px;
   }
   .layout-wrapper2 {
     font-size: 10px;
