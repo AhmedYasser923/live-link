@@ -10,6 +10,7 @@ self.addEventListener("install", (event) => {
         "/manifest.json",
         "/img/icon/chat.png",
         "/img/icon/chat.png",
+        
       ]);
     })
   );

@@ -44,18 +44,18 @@ function createLoader(id = "temp-loader") {
   return loader;
 }
 
-function showLoader(container, loaderId = "temp-loader") {
+export const showLoader = function (container, loaderId = "temp-loader") {
   const existing = document.getElementById(loaderId);
   if (!existing) {
     const loader = createLoader(loaderId);
     container.appendChild(loader);
   }
-}
+};
 
-function hideLoader(loaderId = "temp-loader") {
+export const hideLoader = function (loaderId = "temp-loader") {
   const loader = document.getElementById(loaderId);
   if (loader) loader.remove();
-}
+};
 
 //---------------------------
 
