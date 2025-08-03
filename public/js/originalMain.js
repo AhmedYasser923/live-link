@@ -1,4 +1,5 @@
 import { appendMessage } from "./appendMessage1.js";
+import { processMessage } from "./utilities.js";
 
 const notificationSound = new Audio("../sounds/notification.mp3");
 notificationSound.volume = 0.5; // optional: set volume
@@ -95,8 +96,8 @@ const getConversations = async () => {
             lastMessage.className = "last-message";
             lastMessage.textContent =
               conversation.lastMessageSender.toString() === currentUser
-                ? ` you: ${conversation.lastMessage}`
-                : conversation.lastMessage;
+                ? processMessage(` you: ${conversation.lastMessage}`)
+                : processMessage(conversation.lastMessage);
             nameMessageWrapper.appendChild(lastMessage);
             const LastMessageTime = document.createElement("p");
             LastMessageTime.className = "last-message-time";
@@ -381,7 +382,9 @@ const sendMessage = async (content, receiver, sender) => {
       } else {
         document.querySelector(".last-message").textContent = "";
         document.querySelector(".last-message").textContent =
-          sender === currentUser ? ` you: ${content}` : content;
+          sender === currentUser
+            ? processMessage(`you: ${content}`)
+            : processMessage(content);
 
         document.querySelector(".last-message-time").textContent = "";
         document.querySelector(".last-message-time").textContent = new Date(

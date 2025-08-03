@@ -111,7 +111,7 @@ const LoadAllConversations = async (loggedInUserId) => {
           let lastMessageTimestamp;
           let lastMessageWasSeen;
           if (conversation.lastMessage) {
-            lastMessage = conversation.lastMessage.content;
+            lastMessage = processMessage(conversation.lastMessage.content);
             lastMessageSenderId = conversation.lastMessageSender;
             lastMessageTimestamp = conversation.updatedAt;
             lastMessageWasSeen = conversation.lastMessage.seen;

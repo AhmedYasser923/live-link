@@ -393,7 +393,7 @@ export const updateLastMessage = ({
     }
   } else if (when === "onSend") {
     lastMessage.textContent = "";
-    lastMessage.textContent = `you: ${processMessage(message.content)}`;
+    lastMessage.textContent = processMessage(`you: ${message.content}`);
     lastMessage.classList.remove("message-not-read");
     lastMessage.classList.add("message-read");
   }
