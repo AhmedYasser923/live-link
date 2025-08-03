@@ -176,7 +176,7 @@ body {
   display: grid;
   grid-auto-flow: row;
   grid-template-rows: 1fr 10fr 1fr;
-  max-height: 100vh;
+  max-height: 100svh;
 }
 
 .conversation-header {
