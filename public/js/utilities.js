@@ -61,78 +61,88 @@ export const hideLoader = function (loaderId = "temp-loader") {
 
 //=====display the users on the sidebar=====
 export const displayUsersOnSidebar = async (options) => {
-  if (
-    !document.querySelector(
-      `.chat-wrapper[data-id="${options.otherParticipantID}"]`
-    )
-  ) {
-    const userDoc = await getUserDoc(options.otherParticipantID);
+  try {
+    showLoader(options.container, "convo-loader");
 
-    const chatWrapper = document.createElement("div");
-    chatWrapper.className = "chat-wrapper";
-    chatWrapper.dataset.id = userDoc._id;
+    if (
+      !document.querySelector(
+        `.chat-wrapper[data-id="${options.otherParticipantID}"]`
+      )
+    ) {
+      const userDoc = await getUserDoc(options.otherParticipantID);
 
-    const userImg = document.createElement("img");
-    userImg.src = `./img/${userDoc.photo}`;
-    chatWrapper.appendChild(userImg);
+      const chatWrapper = document.createElement("div");
+      chatWrapper.className = "chat-wrapper";
+      chatWrapper.dataset.id = userDoc._id;
 
-    const layoutWrapper = document.createElement("div");
-    layoutWrapper.className = "layout-wrapper";
+      const userImg = document.createElement("img");
+      userImg.src = `./img/${userDoc.photo}`;
+      chatWrapper.appendChild(userImg);
 
-    const userName = document.createElement("h5");
-    userName.textContent = userDoc.name;
-    layoutWrapper.appendChild(userName);
+      const layoutWrapper = document.createElement("div");
+      layoutWrapper.className = "layout-wrapper";
 
-    const layoutWrapper2 = document.createElement("div");
-    layoutWrapper2.className = "layout-wrapper2";
+      const userName = document.createElement("h5");
+      userName.textContent = userDoc.name;
+      layoutWrapper.appendChild(userName);
 
-    const lastMessage = document.createElement("p");
-    lastMessage.className = "last-message";
-    layoutWrapper.appendChild(lastMessage);
+      const layoutWrapper2 = document.createElement("div");
+      layoutWrapper2.className = "layout-wrapper2";
 
-    const lastMessageTimestamp = document.createElement("p");
-    lastMessageTimestamp.className = "sidebar-time";
+      const lastMessage = document.createElement("p");
+      lastMessage.className = "last-message";
+      layoutWrapper.appendChild(lastMessage);
 
-    layoutWrapper2.appendChild(lastMessageTimestamp);
+      const lastMessageTimestamp = document.createElement("p");
+      lastMessageTimestamp.className = "sidebar-time";
 
-    if (options.lastMessage) {
-      const lastMessageSender = options.lastMessageSenderId;
-      lastMessage.textContent =
-        options.loggedInUserId === lastMessageSender
-          ? `you: ${processMessage(options.lastMessage)}`
-          : `${processMessage(options.lastMessage)}`;
-      if (options.lastMessageWasSeen) {
-        lastMessage.classList.add("message-read");
-      } else if (
-        !options.lastMessageWasSeen &&
-        lastMessage.textContent.startsWith("you")
-      ) {
-        lastMessage.classList.add("message-read");
-      } else if (
-        options.lastMessageWasSeen &&
-        lastMessage.textContent.startsWith("you")
-      ) {
-        lastMessage.classList.add("message-read");
+      layoutWrapper2.appendChild(lastMessageTimestamp);
+
+      if (options.lastMessage) {
+        const lastMessageSender = options.lastMessageSenderId;
+        lastMessage.textContent =
+          options.loggedInUserId === lastMessageSender
+            ? `you: ${processMessage(options.lastMessage)}`
+            : `${processMessage(options.lastMessage)}`;
+        if (options.lastMessageWasSeen) {
+          lastMessage.classList.add("message-read");
+        } else if (
+          !options.lastMessageWasSeen &&
+          lastMessage.textContent.startsWith("you")
+        ) {
+          lastMessage.classList.add("message-read");
+        } else if (
+          options.lastMessageWasSeen &&
+          lastMessage.textContent.startsWith("you")
+        ) {
+          lastMessage.classList.add("message-read");
+        }
+        lastMessageTimestamp.textContent = processTimestamp(
+          options.lastMessageTimestamp,
+          "short"
+        );
       }
-      lastMessageTimestamp.textContent = processTimestamp(
-        options.lastMessageTimestamp,
-        "short"
-      );
+
+      chatWrapper.appendChild(layoutWrapper);
+      chatWrapper.appendChild(layoutWrapper2);
+      options.container.appendChild(chatWrapper);
+
+      if (options.temporary) {
+        document
+          .querySelector(
+            `.chat-wrapper[data-id="${options.otherParticipantID}"]`
+          )
+          .classList.add("temp-user");
+      }
+
+      return { chatWrapper };
+    } else {
+      return;
     }
-
-    chatWrapper.appendChild(layoutWrapper);
-    chatWrapper.appendChild(layoutWrapper2);
-    options.container.appendChild(chatWrapper);
-
-    if (options.temporary) {
-      document
-        .querySelector(`.chat-wrapper[data-id="${options.otherParticipantID}"]`)
-        .classList.add("temp-user");
-    }
-
-    return { chatWrapper };
-  } else {
-    return;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    hideLoader("convo-loader");
   }
 };
 

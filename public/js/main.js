@@ -92,7 +92,6 @@ function updateOnlineStatus() {
 //=====Load All Conversations for the current user=====
 const LoadAllConversations = async (loggedInUserId) => {
   try {
-    showLoader(sidebarChatsSection, "convo-loader");
     const res = await axios.get(`/api/conversations`);
     if (res.data.status === "success") {
       if (res.data.data !== null) {
@@ -136,8 +135,6 @@ const LoadAllConversations = async (loggedInUserId) => {
     }
   } catch (error) {
     console.log(error.response);
-  } finally {
-    hideLoader("convo-loader");
   }
 };
 
