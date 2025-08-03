@@ -11,7 +11,7 @@ export const getUserDoc = async (userId) => {
   }
 };
 
-export const processMessage = (message, maxLength = 30) => {
+export const processMessage = (message, maxLength = 20) => {
   if (message.length > maxLength) {
     return message.slice(0, maxLength) + "...";
   }
