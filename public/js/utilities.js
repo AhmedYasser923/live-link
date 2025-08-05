@@ -231,7 +231,7 @@ export const loadConversationMessages = async ({
     try {
       showLoader(messageBox, "convo-loader");
       const res = await axios.get(
-        `http://127.0.0.1:4000/api/messages/conversation/${conversationID}`
+        `/api/messages/conversation/${conversationID}`
       );
 
       if (res.data.status === "success") {
