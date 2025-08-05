@@ -1,3 +1,4 @@
+const messageCache = new Map();
 //=====to get the user document and return it=====
 export const getUserDoc = async (userId) => {
   try {
@@ -222,22 +223,31 @@ export const loadConversationMessages = async ({
   messageBox,
 }) => {
   messageBox.innerHTML = "";
-  showLoader(messageBox, "convo-loader");
-  try {
-    const res = await axios.get(`/api/messages/conversation/${conversationID}`);
+  if (messageCache.has(conversationID)) {
+    const messages = messageCache.get(conversationID);
+    console.log(messageCache);
+    return { messages };
+  } else {
+    try {
+      showLoader(messageBox, "convo-loader");
+      const res = await axios.get(
+        `http://127.0.0.1:4000/api/messages/conversation/${conversationID}`
+      );
 
-    if (res.data.status === "success") {
-      if (res.data.data !== null) {
-        const messages = res.data.data.conversationMessages;
-
-        return { messages };
+      if (res.data.status === "success") {
+        if (res.data.data !== null) {
+          const messages = res.data.data.conversationMessages;
+          messageCache.set(conversationID, messages);
+          console.log(messageCache);
+          return { messages };
+        }
+        return;
       }
-      return;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      hideLoader("convo-loader");
     }
-  } catch (error) {
-    console.log(error);
-  } finally {
-    hideLoader("convo-loader");
   }
 };
 
