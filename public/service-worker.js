@@ -9,8 +9,6 @@ self.addEventListener("install", (event) => {
         "/js/main.js", // adjust as needed
         "/manifest.json",
         "/img/icon/chat.png",
-        "/img/icon/chat.png",
-        
       ]);
     })
   );
